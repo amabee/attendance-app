@@ -188,7 +188,7 @@ const MasterFileModule = () => {
           Year Levels
         </button>
       </div>
-      <div className="bg-white p-4 rounded shadow">
+      <div className="bg-white p-4 rounded shadow" >
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">
             {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}

@@ -29,9 +29,9 @@ export default function Login() {
     await login();
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
-    // Handle registration submission logic here
+    await signup();
   };
 
   async function login() {
@@ -58,6 +58,47 @@ export default function Login() {
         alert(JSON.stringify(res.data));
       }
     } catch (error) {}
+  }
+
+  async function signup() {
+    const formData = new FormData();
+
+    formData.append("operation", "signup");
+    formData.append(
+      "json",
+      JSON.stringify({
+        name: fullname,
+        student_number: studID,
+        contact_information: email,
+        year_level: yearLevel,
+      })
+    );
+
+    try {
+      const res = await axios({
+        url: url,
+        method: "POST",
+        data: formData,
+      });
+
+      if (res.status !== 200) {
+        alert("Status Error: " + res.statusText);
+        return;
+      }
+
+      if (res.data.success) {
+        alert(JSON.stringify(res.data.success));
+        setIsRegister(false);
+        setStudID("");
+        setEmail("");
+        setFullname("");
+        setYearLevel("");
+      } else {
+        alert(JSON.stringify(res.data.error));
+      }
+    } catch (e) {
+      alert(e);
+    }
   }
 
   return (

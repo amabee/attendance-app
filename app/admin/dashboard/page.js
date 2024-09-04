@@ -6,6 +6,7 @@ import MasterFileModule from "./components/MasterFileModule";
 import TribuAssignmentModule from "./components/TribuAssignmentModule";
 import AttendanceModule from "./components/AttendanceModule";
 import ReportsModule from "./components/ReportsModule";
+import EventsModule from "./components/events";
 
 const Sidebar = ({ setActiveModule }) => (
   <div className="w-64 bg-gray-800 h-screen p-4">
@@ -28,6 +29,12 @@ const Sidebar = ({ setActiveModule }) => (
         className="w-full text-left text-white py-2 px-4 hover:bg-gray-700 rounded mb-2 flex items-center"
       >
         <Calendar className="mr-2" /> Attendance
+      </button>
+      <button
+        onClick={() => setActiveModule("events")}
+        className="w-full text-left text-white py-2 px-4 hover:bg-gray-700 rounded mb-2 flex items-center"
+      >
+        <Calendar className="mr-2" /> Events
       </button>
       <button
         onClick={() => setActiveModule("reports")}
@@ -59,6 +66,7 @@ const AdminDashboard = () => {
           <Sidebar setActiveModule={setActiveModule} />
           <div className="flex-1 bg-gray-100 min-h-screen">
             {activeModule === "masterFile" && <MasterFileModule />}
+            {activeModule === "events" && <EventsModule />}
             {activeModule === "tribuAssignment" && <TribuAssignmentModule />}
             {activeModule === "attendance" && <AttendanceModule />}
             {activeModule === "reports" && <ReportsModule />}
